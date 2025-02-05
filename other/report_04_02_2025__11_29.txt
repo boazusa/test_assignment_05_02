@@ -1,0 +1,490 @@
+/media/ubuntu/F0C0AB6EC0AB3A2C/Users/USER/Documents/NoTraffic_Assignment/pycharm_code_3/.venv/bin/python /media/ubuntu/F0C0AB6EC0AB3A2C/Users/USER/Documents/NoTraffic_Assignment/pycharm_code_3/init_webcam_tests.py 
+Test start Time: <function get_current_time at 0x7fafe167b9d0>
+Results are saved to /home/ubuntu/Documents//test_results_02_04_2025__11_25_15
+Listing available video devices:
+Integrated Camera: Integrated C (usb-0000:00:14.0-5):
+	/dev/video0
+	/dev/video1
+
+
+search for computer builtin webcam device:
+webcam device 'video0' is found under /dev
+Getting capabilities of /dev/video0:
+Driver Info:
+	Driver name      : uvcvideo
+	Card type        : Integrated Camera: Integrated C
+	Bus info         : usb-0000:00:14.0-5
+	Driver version   : 5.15.85
+	Capabilities     : 0x84a00001
+		Video Capture
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04200001
+		Video Capture
+		Streaming
+		Extended Pix Format
+Priority: 2
+Video input : 0 (Camera 1: ok)
+Format Video Capture:
+	Width/Height      : 960/540
+	Pixel Format      : 'YUYV' (YUYV 4:2:2)
+	Field             : None
+	Bytes per Line    : 1920
+	Size Image        : 1036800
+	Colorspace        : sRGB
+	Transfer Function : Rec. 709
+	YCbCr/HSV Encoding: ITU-R 601
+	Quantization      : Default (maps to Limited Range)
+	Flags             : 
+Crop Capability Video Capture:
+	Bounds      : Left 0, Top 0, Width 960, Height 540
+	Default     : Left 0, Top 0, Width 960, Height 540
+	Pixel Aspect: 1/1
+Selection Video Capture: crop_default, Left 0, Top 0, Width 960, Height 540, Flags: 
+Selection Video Capture: crop_bounds, Left 0, Top 0, Width 960, Height 540, Flags: 
+Streaming Parameters Video Capture:
+	Capabilities     : timeperframe
+	Frames per second: 15.000 (15/1)
+	Read buffers     : 0
+                     brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=100 step=1 default=64 value=64
+                            hue 0x00980903 (int)    : min=-180 max=180 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                          gamma 0x00980910 (int)    : min=90 max=150 step=1 default=120 value=120
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=0
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=10 default=4600 value=4600 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=7 step=1 default=3 value=3
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=2 max=1250 step=1 default=156 value=156 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+
+list webcam supported resolutions:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+[video4linux2,v4l2 @ 0x55ee075e76c0] Compressed:       mjpeg :          Motion-JPEG : 1280x720 320x180 320x240 352x288 424x240 640x360 640x480 848x480 960x540
+[video4linux2,v4l2 @ 0x55ee075e76c0] Raw       :     yuyv422 :           YUYV 4:2:2 : 1280x720 320x180 320x240 352x288 424x240 640x360 640x480 848x480 960x540
+/dev/video0: Immediate exit requested
+
+Listing supported formats for /dev/video0:
+ioctl: VIDIOC_ENUM_FMT
+	Type: Video Capture
+
+	[0]: 'MJPG' (Motion-JPEG, compressed)
+	[1]: 'YUYV' (YUYV 4:2:2)
+
+Capturing a frame from /dev/video0 and saving as test_frame_7_02_04_2025__11_25_16.jpg:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1908.670356, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[swscaler @ 0x559db13607c0] deprecated pixel format used, make sure you did set range correctly
+Output #0, image2, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/test_frame_7_02_04_2025__11_25_16.jpg':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: mjpeg, yuvj422p(pc), 960x540, q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 mjpeg
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
+frame=    1 fps=0.0 q=6.2 Lsize=N/A time=00:00:00.06 bitrate=N/A speed=11.1x    
+video:35kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+
+Capturing video from /dev/video0 and saving as test_video_8_02_04_2025__11_25_16.mp4:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1909.100313, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x565139feba80] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x565139feba80] profile High 4:2:2, level 3.1, 4:2:2 8-bit
+[libx264 @ 0x565139feba80] 264 - core 155 r2917 0a84d98 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=15 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/test_video_8_02_04_2025__11_25_16.mp4':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: h264 (libx264) (avc1 / 0x31637661), yuv422p, 960x540, q=-1--1, 15 fps, 15360 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   46 fps= 14 q=-1.0 Lsize=     315kB time=00:00:02.86 bitrate= 900.7kbits/s dup=1 drop=0 speed=0.875x    
+video:314kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.431905%
+[libx264 @ 0x565139feba80] frame I:1     Avg QP:21.89  size: 38850
+[libx264 @ 0x565139feba80] frame P:12    Avg QP:22.51  size: 13406
+[libx264 @ 0x565139feba80] frame B:33    Avg QP:24.10  size:  3665
+[libx264 @ 0x565139feba80] consecutive B-frames:  4.3%  0.0%  0.0% 95.7%
+[libx264 @ 0x565139feba80] mb I  I16..4: 15.0% 61.3% 23.7%
+[libx264 @ 0x565139feba80] mb P  I16..4:  2.4%  6.2%  0.7%  P16..4: 51.2% 14.1% 10.4%  0.0%  0.0%    skip:15.0%
+[libx264 @ 0x565139feba80] mb B  I16..4:  0.2%  0.4%  0.0%  B16..8: 36.2%  2.9%  0.5%  direct: 7.3%  skip:52.5%  L0:41.3% L1:53.0% BI: 5.7%
+[libx264 @ 0x565139feba80] 8x8 transform intra:64.3% inter:78.5%
+[libx264 @ 0x565139feba80] coded y,uvDC,uvAC intra: 57.5% 72.5% 23.3% inter: 18.3% 40.8% 0.5%
+[libx264 @ 0x565139feba80] i16 v,h,dc,p:  5% 13%  3% 78%
+[libx264 @ 0x565139feba80] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 19% 14% 23%  7%  7%  8%  7%  7%  8%
+[libx264 @ 0x565139feba80] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 26% 20% 10%  7%  7% 10%  7%  8%  7%
+[libx264 @ 0x565139feba80] i8c dc,h,v,p: 55% 19% 20%  6%
+[libx264 @ 0x565139feba80] Weighted P-Frames: Y:41.7% UV:16.7%
+[libx264 @ 0x565139feba80] ref P L0: 54.5% 15.4% 19.6%  8.9%  1.6%
+[libx264 @ 0x565139feba80] ref B L0: 79.0% 16.9%  4.1%
+[libx264 @ 0x565139feba80] ref B L1: 91.6%  8.4%
+[libx264 @ 0x565139feba80] kb/s:836.55
+
+Capturing a frame from /dev/video0 and saving as frame_9_02_04_2025__11_25_20.jpg:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1912.810472, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[swscaler @ 0x55e9225717c0] deprecated pixel format used, make sure you did set range correctly
+Output #0, image2, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/frame_9_02_04_2025__11_25_20.jpg':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: mjpeg, yuvj422p(pc), 960x540, q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 mjpeg
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: -1
+frame=    1 fps=0.0 q=6.2 Lsize=N/A time=00:00:00.06 bitrate=N/A speed=10.8x    
+video:33kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+
+Capturing a frame from /dev/video0 and saving as frame_9_02_04_2025__11_25_20.png:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1913.220516, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> png (native))
+Press [q] to stop, [?] for help
+Output #0, image2, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/frame_9_02_04_2025__11_25_20.png':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: png, rgb24, 960x540, q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 png
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.06 bitrate=N/A speed=1.38x    
+video:671kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+
+Capturing a frame from /dev/video0 and saving as frame_9_02_04_2025__11_25_21.bmp:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1913.680503, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> bmp (native))
+Press [q] to stop, [?] for help
+Output #0, image2, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/frame_9_02_04_2025__11_25_21.bmp':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: bmp, bgr24, 960x540, q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 bmp
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.06 bitrate=N/A speed=14.1x    
+video:1519kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+
+Capturing a frame from /dev/video0 and saving as frame_9_02_04_2025__11_25_21.rgb:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1914.090434, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> rawvideo (native))
+Press [q] to stop, [?] for help
+Output #0, rawvideo, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/frame_9_02_04_2025__11_25_21.rgb':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, q=2-31, 124416 kb/s, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 rawvideo
+frame=    1 fps=0.0 q=-0.0 Lsize=    1012kB time=00:00:00.06 bitrate=124415.4kbits/s speed=36.5x    
+video:1012kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
+
+Capturing video from /dev/video0 and saving as video_10_02_04_2025__11_25_21.avi:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1914.434270, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x55f330563980] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x55f330563980] profile High 4:2:2, level 3.1, 4:2:2 8-bit
+Output #0, avi, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/video_10_02_04_2025__11_25_21.avi':
+  Metadata:
+    ISFT            : Lavf58.29.100
+    Stream #0:0: Video: h264 (libx264) (H264 / 0x34363248), yuv422p, 960x540, q=-1--1, 15 fps, 15 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   44 fps= 14 q=-1.0 Lsize=     329kB time=00:00:02.86 bitrate= 940.1kbits/s speed=0.889x    
+video:322kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 2.065129%
+[libx264 @ 0x55f330563980] frame I:1     Avg QP:20.21  size: 43905
+[libx264 @ 0x55f330563980] frame P:11    Avg QP:22.51  size: 14253
+[libx264 @ 0x55f330563980] frame B:32    Avg QP:24.21  size:  4043
+[libx264 @ 0x55f330563980] consecutive B-frames:  2.3%  0.0%  6.8% 90.9%
+[libx264 @ 0x55f330563980] mb I  I16..4: 11.2% 60.1% 28.6%
+[libx264 @ 0x55f330563980] mb P  I16..4:  2.8%  7.4%  0.9%  P16..4: 50.8% 16.0% 10.5%  0.0%  0.0%    skip:11.6%
+[libx264 @ 0x55f330563980] mb B  I16..4:  0.2%  0.6%  0.0%  B16..8: 35.4%  3.2%  0.5%  direct: 8.2%  skip:51.9%  L0:47.3% L1:47.4% BI: 5.3%
+[libx264 @ 0x55f330563980] 8x8 transform intra:64.5% inter:76.9%
+[libx264 @ 0x55f330563980] coded y,uvDC,uvAC intra: 60.8% 75.0% 28.9% inter: 19.8% 43.3% 0.6%
+[libx264 @ 0x55f330563980] i16 v,h,dc,p: 15% 12%  4% 69%
+[libx264 @ 0x55f330563980] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 19% 15% 22%  7%  7%  9%  7%  7%  7%
+[libx264 @ 0x55f330563980] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 28% 19% 10%  8%  7%  9%  6%  7%  6%
+[libx264 @ 0x55f330563980] i8c dc,h,v,p: 54% 19% 20%  7%
+[libx264 @ 0x55f330563980] Weighted P-Frames: Y:54.5% UV:9.1%
+[libx264 @ 0x55f330563980] ref P L0: 59.4%  7.4% 20.8%  9.9%  2.5%
+[libx264 @ 0x55f330563980] ref B L0: 76.4% 19.0%  4.6%
+[libx264 @ 0x55f330563980] ref B L1: 90.5%  9.5%
+[libx264 @ 0x55f330563980] kb/s:880.14
+
+Capturing video from /dev/video0 and saving as video_10_02_04_2025__11_25_25.mp4:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1918.100711, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x55ffec919a80] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2 AVX512
+[libx264 @ 0x55ffec919a80] profile High 4:2:2, level 3.1, 4:2:2 8-bit
+[libx264 @ 0x55ffec919a80] 264 - core 155 r2917 0a84d98 - H.264/MPEG-4 AVC codec - Copyleft 2003-2018 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=12 lookahead_threads=2 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=15 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/video_10_02_04_2025__11_25_25.mp4':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0: Video: h264 (libx264) (avc1 / 0x31637661), yuv422p, 960x540, q=-1--1, 15 fps, 15360 tbn, 15 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+frame=   46 fps= 14 q=-1.0 Lsize=     307kB time=00:00:02.86 bitrate= 876.6kbits/s dup=1 drop=0 speed=0.877x    
+video:305kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.443815%
+[libx264 @ 0x55ffec919a80] frame I:1     Avg QP:21.77  size: 38464
+[libx264 @ 0x55ffec919a80] frame P:12    Avg QP:22.47  size: 13284
+[libx264 @ 0x55ffec919a80] frame B:33    Avg QP:24.00  size:  3460
+[libx264 @ 0x55ffec919a80] consecutive B-frames:  4.3%  0.0%  0.0% 95.7%
+[libx264 @ 0x55ffec919a80] mb I  I16..4: 16.4% 58.1% 25.5%
+[libx264 @ 0x55ffec919a80] mb P  I16..4:  2.3%  5.5%  0.8%  P16..4: 50.3% 15.5% 10.4%  0.0%  0.0%    skip:15.3%
+[libx264 @ 0x55ffec919a80] mb B  I16..4:  0.2%  0.3%  0.0%  B16..8: 33.6%  2.7%  0.5%  direct: 6.9%  skip:55.8%  L0:43.0% L1:50.7% BI: 6.4%
+[libx264 @ 0x55ffec919a80] 8x8 transform intra:61.3% inter:77.6%
+[libx264 @ 0x55ffec919a80] coded y,uvDC,uvAC intra: 55.7% 70.7% 24.9% inter: 17.8% 39.3% 0.5%
+[libx264 @ 0x55ffec919a80] i16 v,h,dc,p: 11% 13%  4% 72%
+[libx264 @ 0x55ffec919a80] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 21% 13% 22%  8%  6%  8%  6%  8%  7%
+[libx264 @ 0x55ffec919a80] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 27% 19%  9%  8%  7%  9%  6%  8%  7%
+[libx264 @ 0x55ffec919a80] i8c dc,h,v,p: 54% 19% 21%  6%
+[libx264 @ 0x55ffec919a80] Weighted P-Frames: Y:41.7% UV:8.3%
+[libx264 @ 0x55ffec919a80] ref P L0: 56.7% 10.6% 21.8%  9.3%  1.6%
+[libx264 @ 0x55ffec919a80] ref B L0: 74.8% 19.7%  5.5%
+[libx264 @ 0x55ffec919a80] ref B L1: 88.7% 11.3%
+[libx264 @ 0x55ffec919a80] kb/s:814.05
+
+Capturing video from /dev/video0 and saving as video_10_02_04_2025__11_25_29.raw:
+Error: ffmpeg version 4.2.7-0ubuntu0.1 Copyright (c) 2000-2022 the FFmpeg developers
+  built with gcc 9 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+  configuration: --prefix=/usr --extra-version=0ubuntu0.1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-avresample --disable-filter=resample --enable-avisynth --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librsvg --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libssh --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-nvenc --enable-chromaprint --enable-frei0r --enable-libx264 --enable-shared
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, video4linux2,v4l2, from '/dev/video0':
+  Duration: N/A, start: 1921.810528, bitrate: 124416 kb/s
+    Stream #0:0: Video: rawvideo (YUY2 / 0x32595559), yuyv422, 960x540, 124416 kb/s, 15 fps, 15 tbr, 1000k tbn, 1000k tbc
+[NULL @ 0x5617810694c0] Unable to find a suitable output format for '/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/video_10_02_04_2025__11_25_29.raw'
+/home/ubuntu/Documents//test_results_02_04_2025__11_25_15/video_10_02_04_2025__11_25_29.raw: Invalid argument
+
+Capturing 3 seconds video from /dev/video0 and saving as video__1_fps__02_04_2025__11_25_29.mp4 with 1 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__2_fps__02_04_2025__11_25_33.mp4 with 2 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__3_fps__02_04_2025__11_25_36.mp4 with 3 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__5_fps__02_04_2025__11_25_40.mp4 with 5 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__10_fps__02_04_2025__11_25_44.mp4 with 10 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__20_fps__02_04_2025__11_25_48.mp4 with 20 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__30_fps__02_04_2025__11_25_51.mp4 with 30 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__40_fps__02_04_2025__11_25_55.mp4 with 40 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__50_fps__02_04_2025__11_25_59.mp4 with 50 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__100_fps__02_04_2025__11_26_02.mp4 with 100 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__1_fps__02_04_2025__11_26_06.avi with 1 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__2_fps__02_04_2025__11_26_10.avi with 2 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__3_fps__02_04_2025__11_26_13.avi with 3 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__5_fps__02_04_2025__11_26_17.avi with 5 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__10_fps__02_04_2025__11_26_21.avi with 10 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__20_fps__02_04_2025__11_26_24.avi with 20 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__30_fps__02_04_2025__11_26_28.avi with 30 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__40_fps__02_04_2025__11_26_32.avi with 40 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__50_fps__02_04_2025__11_26_35.avi with 50 fps settings:
+Test 11:  15 fps
+Capturing 3 seconds video from /dev/video0 and saving as video__100_fps__02_04_2025__11_26_39.avi with 100 fps settings:
+Test 11:  15 fps
+Capturing image from /dev/video0 and saving as image_12__1280x720_res__02_04_2025__11_26_43.jpg with 1280x720 resolution:
+Capturing image from /dev/video0 and saving as image_12__320x180_res__02_04_2025__11_26_43.jpg with 320x180 resolution:
+Capturing image from /dev/video0 and saving as image_12__320x240_res__02_04_2025__11_26_44.jpg with 320x240 resolution:
+Capturing image from /dev/video0 and saving as image_12__352x288_res__02_04_2025__11_26_44.jpg with 352x288 resolution:
+Capturing image from /dev/video0 and saving as image_12__424x240_res__02_04_2025__11_26_44.jpg with 424x240 resolution:
+Capturing image from /dev/video0 and saving as image_12__640x360_res__02_04_2025__11_26_45.jpg with 640x360 resolution:
+Capturing image from /dev/video0 and saving as image_12__640x480_res__02_04_2025__11_26_45.jpg with 640x480 resolution:
+Capturing image from /dev/video0 and saving as image_12__848x480_res__02_04_2025__11_26_45.jpg with 848x480 resolution:
+Capturing image from /dev/video0 and saving as image_12__960x540_res__02_04_2025__11_26_46.jpg with 960x540 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__1280x720_res__02_04_2025__11_26_46.mp4 with 1280x720 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__320x180_res__02_04_2025__11_26_50.mp4 with 320x180 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__320x240_res__02_04_2025__11_26_53.mp4 with 320x240 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__352x288_res__02_04_2025__11_26_57.mp4 with 352x288 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__424x240_res__02_04_2025__11_27_00.mp4 with 424x240 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__640x360_res__02_04_2025__11_27_03.mp4 with 640x360 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__640x480_res__02_04_2025__11_27_07.mp4 with 640x480 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__848x480_res__02_04_2025__11_27_10.mp4 with 848x480 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_13__960x540_res__02_04_2025__11_27_14.mp4 with 960x540 resolution:
+Capturing image from /dev/video0 and saving as image_14__1200x720_res__02_04_2025__11_27_18.jpg with 1200x720 resolution:
+Capturing image from /dev/video0 and saving as image_14__321x180_res__02_04_2025__11_27_18.jpg with 321x180 resolution:
+Capturing image from /dev/video0 and saving as image_14__20x240_res__02_04_2025__11_27_18.jpg with 20x240 resolution:
+Capturing image from /dev/video0 and saving as image_14__352x28_res__02_04_2025__11_27_19.jpg with 352x28 resolution:
+Capturing image from /dev/video0 and saving as image_14__42x240_res__02_04_2025__11_27_19.jpg with 42x240 resolution:
+Capturing image from /dev/video0 and saving as image_14__640x1360_res__02_04_2025__11_27_19.jpg with 640x1360 resolution:
+Capturing image from /dev/video0 and saving as image_14__64x480_res__02_04_2025__11_27_20.jpg with 64x480 resolution:
+Capturing image from /dev/video0 and saving as image_14__848x48_res__02_04_2025__11_27_20.jpg with 848x48 resolution:
+Capturing image from /dev/video0 and saving as image_14__1960x540_res__02_04_2025__11_27_20.jpg with 1960x540 resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__1200x720_res__02_04_2025__11_27_21.mp4 with 1200x720 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__321x180_res__02_04_2025__11_27_25.mp4 with 321x180 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__20x240_res__02_04_2025__11_27_28.mp4 with 20x240 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__352x28_res__02_04_2025__11_27_31.mp4 with 352x28 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__42x240_res__02_04_2025__11_27_35.mp4 with 42x240 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__640x1360_res__02_04_2025__11_27_38.mp4 with 640x1360 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__64x480_res__02_04_2025__11_27_42.mp4 with 64x480 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__848x48_res__02_04_2025__11_27_45.mp4 with 848x48 unsupported resolution:
+Capturing 3 seconds video from /dev/video0 and saving as video_14__1960x540_res__02_04_2025__11_27_48.mp4 with 1960x540 unsupported resolution:
+Test end Time: <function get_current_time at 0x7fafe167b9d0>
+
+Process finished with exit code 0
+

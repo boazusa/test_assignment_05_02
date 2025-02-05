@@ -1,0 +1,328 @@
+import subprocess
+from datetime import datetime
+import os
+import pytest
+import time
+
+
+def get_current_time():
+    # Get the current date and time
+    current_time = datetime.now()
+
+    # Format the date and time as mm_dd_yyyy_hh_mm_ss
+    formatted_time = current_time.strftime("%m_%d_%Y_%H_%M_%S")
+    return formatted_time
+
+
+def results_path():
+    base_path = "/home/ubuntu/Documents/"
+    current_time = datetime.now()
+    formatted_time = current_time.strftime("%m_%d_%Y__%H_%M_%S")
+    if not os.path.exists(base_path + "/test_results_" + formatted_time):
+        os.mkdir(base_path + "/test_results_" + formatted_time)  # Creates only the last directory in the path
+    return base_path + "/test_results_" + formatted_time
+
+
+RESULT_FOLDER = results_path()
+
+
+# Function to execute v4l2-ctl commands and return output
+def run_v4l2_ctl(command):
+    try:
+        result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        return result.stdout.decode('utf-8'), result.stderr.decode('utf-8')
+    except subprocess.CalledProcessError as e:
+        return e.stdout.decode('utf-8'), e.stderr.decode('utf-8')
+
+
+# Test 1: Sanity, List all devices
+def test_list_devices():
+    print("Listing available video devices:")
+    stdout, stderr = run_v4l2_ctl("v4l2-ctl --list-devices")
+    if stderr:
+        print("Error:", stderr)
+        assert 0
+    else:
+        print(stdout)
+        assert "/dev/video0" in stdout
+
+
+# test 2: Sanity, search for webcam device:
+def test_search_for_builtin_webcam_device():
+    print("search for computer builtin webcam device:")
+    flag = 0
+    stdout, stderr = run_v4l2_ctl("v4l2-ctl --list-devices")
+    if stderr:
+        print("Error:", stderr)
+    else:
+        for line in stdout.split('\n'):
+            if "/dev/video0" in line:
+                print("webcam device 'video0' is found under /dev")
+                flag = 1
+    assert flag
+
+
+# Test 3: Sanity, Get device capabilities
+# This test may include more specifications, I selected one example (brightness) only
+def test_get_device_capabilities(device="/dev/video0"):
+    print(f"Getting capabilities of {device}:")
+    stdout, stderr = run_v4l2_ctl(f"v4l2-ctl --device={device} --all")
+    if stderr:
+        print("Error:", stderr)
+        print("Test Failed")
+    else:
+        print(stdout)
+        out = stdout.split('\n')
+        for line in out:
+            if "brightness" in line:
+                assert "min=0" in line
+                assert "max=255" in line
+
+
+# Test 4: Sanity, list webcam supported resolutions
+def test_list_supported_device_resolutions(device="/dev/video0"):
+    print("list webcam supported resolutions:")
+    stdout, stderr = run_v4l2_ctl(f"ffmpeg -f v4l2 -list_formats all -i {device}")
+    if stderr:
+        print("Error:", stderr)
+        assert 0
+    else:
+        print(stdout)
+        assert 1
+
+
+# Test 5: Sanity, Get device specs (this test can include more details)
+def test_get_device_specs(device="/dev/video0"):
+    params = [["brightness", "min=0", "max=255"], ["contrast", "min=0", "max=255"], ["saturation", "min=0", "max=100"]]
+    for param in params:
+        stdout, stderr = run_v4l2_ctl(f'v4l2-ctl --device={device} --all | grep -iE "{param[0]}"')
+        if stderr:
+            print("Error:", stderr)
+            assert 0
+        elif stdout:
+            for i in range(1, len(param)):
+                assert param[i] in stdout
+        else:
+            assert 0
+    assert 1
+
+
+# Test 6: Sanity, List supported formats for a device
+def test_list_supported_formats(device="/dev/video0"):
+    print(f"Listing supported formats for {device}:")
+    stdout, stderr = run_v4l2_ctl(f"v4l2-ctl --device={device} --list-formats")
+    if stderr:
+        print("Error:", stderr)
+        assert 0
+    else:
+        print(stdout)
+        assert 1
+
+
+# Test 7: Sanity, Capture a frame (save as image)
+def test_capture_frame(device="/dev/video0", filename="frame", ext="jpg"):
+    date = get_current_time()
+    print(f"Capturing a frame from {device} and saving as {filename}_{date}.{ext}:")
+    # stdout, stderr = run_v4l2_ctl(f"v4l2-ctl --device={device} --capture --file={filename}")
+    stdout, stderr = run_v4l2_ctl(
+        f"ffmpeg -f video4linux2 -i {device} -frames 1 {RESULT_FOLDER}/{filename}_{date}.{ext}")
+
+    if stderr:
+        print("Error:", stderr)
+        assert 0
+    else:
+        print(stdout)
+        assert 1
+
+
+# Test 8: Sanity, video stream (save as mp4)
+def test_video_stream(device="/dev/video0", filename="video", ext="mp4"):
+    try:
+        date = get_current_time()
+        print(f"Capturing video from {device} and saving as {filename}_{date}.{ext}:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -f v4l2 -t 3 -i {device} -vcodec libx264 -acodec aac {RESULT_FOLDER}/"
+            f"{filename}_{date}.{ext}")
+        if stderr:
+            print("Error:", stderr)
+        else:
+            print(stdout)
+        assert 1
+    except Exception as e:
+        assert 0
+
+
+# Test 9: Functional, Capture a frame with different format supported formats shall be created and viewable
+def test_capture_frame_diff_formats(device="/dev/video0", filename="diff_format_frame"):
+    try:
+        supported_format = ["jpg", "png", "bmp", "rgb"]
+        for ext in supported_format:
+            date = get_current_time()
+            print(f"Capturing a frame from {device} and saving as {filename}_{date}.{ext}:")
+            stdout, stderr = run_v4l2_ctl(
+                f"ffmpeg -f video4linux2 -i {device} -frames 1 {RESULT_FOLDER}/{filename}_{date}.{ext}")
+
+            if stderr:
+                print("Error:", stderr)
+            else:
+                print(stdout)
+        assert 1
+    except Exception as e:
+        assert 0
+
+
+# Test 10: Functional, video stream recording with different supported formats shall be created and played
+def test_video_stream_diff_formats(device="/dev/video0", filename="video"):
+    try:
+        supported_format = ["avi", "mp4", "raw"]
+        for ext in supported_format:
+            date = get_current_time()
+            print(f"Capturing video from {device} and saving as {filename}_{date}.{ext}:")
+            stdout, stderr = run_v4l2_ctl(
+                f"ffmpeg -f v4l2 -t 3 -i {device} -vcodec libx264 -acodec aac {RESULT_FOLDER}/"
+                f"{filename}_{date}.{ext}")
+            if stderr:
+                print("Error:", stderr)
+            else:
+                print(stdout)
+        assert 1
+    except Exception as e:
+        assert 0
+
+
+# Test 11: Performance , test video recording for different fps (supported and unsupported)
+def test_video_frame_rate(device="/dev/video0", filename="video", ext="mp4"):
+    fps_list = ["1", "2", "3", "5", "10", "20", "30", "40", "50", "100"]
+    for fps in fps_list:
+        date = get_current_time()
+        print(f"Capturing 3 seconds video from {device} and saving as {filename}__{fps}_fps__{date}.{ext} with {fps}:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -framerate {fps} -f v4l2 -t 3 -i {device} -vcodec libx264 -acodec aac {RESULT_FOLDER}/"
+            f"{filename}__{fps}_fps__{date}.{ext}")
+        if stderr:
+            print("Error:", stderr)
+        else:
+            print(stdout)
+
+
+# Test 12: Image capturing shall be be created with every supported resolution.
+def test_capture_image_with_different_resolution(device="/dev/video0", filename="image_12"):
+    # supported resolutions were found using 'v4l2-ctl --list-formats-ext' command
+    # List of supported resolutions from v4l2-ctl output
+    supported_resolutions = ["1280x720", "320x180", "320x240", "352x288", "424x240",
+                             "640x360", "640x480", "848x480", "960x540"]
+    for res in supported_resolutions:
+        date = get_current_time()
+        print(f"Capturing image from {device} and saving as {filename}__{res}_res__{date}.jpg with {res} resolution:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -f video4linux2 -video_size {res} -i {device} -frames 1 {RESULT_FOLDER}/"
+            f"{filename}__{res}_res__{date}.jpg")
+        resolution_test = r""" 2>&1 | grep "Stream #0" | sed -n 's/.*, \([0-9]\+x[0-9]\+\).*/\1/p'"""
+        resolution_info, err = run_v4l2_ctl(
+            f"ffmpeg -i {RESULT_FOLDER}/{filename}__{res}_res__{date}.jpg" + resolution_test)
+
+        assert resolution_info.strip() == res, (f"Resolution info received {resolution_info.strip()}"
+                                                f" != resolution set {res}")
+
+
+# Test 13: Negative, Video recording shall be be created with every supported resolution.
+def test_video_resolution(device="/dev/video0", filename="video_13", ext="mp4"):
+    # List of supported resolutions from v4l2-ctl output
+    supported_resolutions = ["1280x720", "320x180", "320x240", "352x288", "424x240",
+                             "640x360", "640x480", "848x480", "960x540"]
+    for res in supported_resolutions:
+        date = get_current_time()
+        print(f"Capturing 3 seconds video from {device} and saving as {filename}__{res}_res__{date}.{ext}"
+              f" with {res} resolution:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -f v4l2 -t 3 -video_size {res} -i {device} -vcodec libx264 -acodec aac {RESULT_FOLDER}/"
+            f"{filename}__{res}_res__{date}.{ext}")
+        resolution_test = r""" 2>&1 | grep "Stream #0" | sed -n 's/.*, \([0-9]\+x[0-9]\+\).*/\1/p'"""
+        resolution_info, err = run_v4l2_ctl(
+            f"ffmpeg -i {RESULT_FOLDER}/{filename}__{res}_res__{date}.{ext}" + resolution_test)
+
+        assert resolution_info.strip() == res, (f"Resolution info received {resolution_info.strip()}"
+                                                f" != resolution set {res}")
+
+
+# Test 14: Negative, Image capturing shall be be created with supported resolution only.
+# image resolution shall be created with the nearest supported resolution available
+def test_capture_image_with_different_unsupported_resolution(device="/dev/video0", filename="image_14"):
+    # List of random unsupported resolutions (not in v4l2-ctl output list)
+    supported_resolutions = ["1200x720", "321x180", "20x240", "352x28", "42x240",
+                             "640x1360", "64x480", "848x48", "1960x540"]
+    for res in supported_resolutions:
+        date = get_current_time()
+        print(f"Capturing image from {device} and saving as {filename}__{res}_res__{date}.jpg with {res} resolution:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -f video4linux2 -video_size {res} -i {device} -frames 1 {RESULT_FOLDER}/"
+            f"{filename}__{res}_res__{date}.jpg")
+        resolution_test = r""" 2>&1 | grep "Stream #0" | sed -n 's/.*, \([0-9]\+x[0-9]\+\).*/\1/p'"""
+        resolution_info, err = run_v4l2_ctl(
+            f"ffmpeg -i {RESULT_FOLDER}/{filename}__{res}_res__{date}.jpg" + resolution_test)
+
+        assert resolution_info.strip() != res, (f"Resolution info received {resolution_info.strip()}"
+                                                f" != resolution set {res}")
+
+
+# Test 15: Video recording shall be be created with supported resolution only.
+# Video resolution shall be created with the nearest supported resolution available
+def test_video_unsupported_resolution(device="/dev/video0", filename="video_15", ext="mp4"):
+    # List of random unsupported resolutions (not in v4l2-ctl output list)
+    supported_resolutions = ["1200x720", "321x180", "20x240", "352x28", "42x240",
+                             "640x1360", "64x480", "848x48", "1960x540"]
+    for res in supported_resolutions:
+        date = get_current_time()
+        print(f"Capturing 3 seconds video from {device} and saving as {filename}__{res}_res__{date}.{ext}"
+              f" with {res} unsupported resolution:")
+        stdout, stderr = run_v4l2_ctl(
+            f"ffmpeg -f v4l2 -t 3 -video_size {res} -i {device} -vcodec libx264 -acodec aac {RESULT_FOLDER}/"
+            f"{filename}__{res}_res__{date}.{ext}")
+        resolution_test = r""" 2>&1 | grep "Stream #0" | sed -n 's/.*, \([0-9]\+x[0-9]\+\).*/\1/p'"""
+        resolution_info, err = run_v4l2_ctl(
+            f"ffmpeg -i {RESULT_FOLDER}/{filename}__{res}_res__{date}.{ext}" + resolution_test)
+
+        assert resolution_info.strip() != res, (f"Resolution info received {resolution_info.strip()}"
+                                                f" == unsupported resolution set {res}")
+
+
+# ffmpeg -f video4linux2 -video_size "320x240" -i /dev/video0 -frames 1 frame2.jpg TODO remove this line
+
+# Example usage:
+if __name__ == "__main__":
+    # List devices
+    test_list_devices()
+
+    # search for webcam device:
+    test_search_for_builtin_webcam_device()
+
+    # Get capabilities of the first device (adjust if needed)
+    test_get_device_capabilities("/dev/video0")
+
+    # List supported webcam resolutions
+    test_list_supported_device_resolutions("/dev/video0")
+
+    # List supported formats
+    test_list_supported_formats("/dev/video0")
+
+    # Capture a frame
+    test_capture_frame("/dev/video0", "test_frame_7", "jpg")
+
+    # video stream
+    test_video_stream("/dev/video0", "test_video_8", "mp4")
+
+    test_capture_frame_diff_formats(device="/dev/video0", filename="frame_9")
+
+    test_video_stream_diff_formats(device="/dev/video0", filename="video_10")
+
+    test_video_frame_rate(device="/dev/video0", filename="video_11")
+
+    test_capture_image_with_different_resolution(device="/dev/video0", filename="image_12")
+
+    test_video_resolution(device="/dev/video0", filename="video_13")
+
+    test_capture_image_with_different_unsupported_resolution(device="/dev/video0", filename="image_14")
+
+    test_video_unsupported_resolution(device="/dev/video0", filename="video_14")
+
+    print("FINISHED")
